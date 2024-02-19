@@ -1,0 +1,24 @@
+<h1 class="text-center">My Tasks</h1>
+
+<%= link_to 'Create a new task', tasks_new_path, class: "btn btn-primary m-4" %>
+</div>
+<% @tasks.each do |task| %>
+<div class="cards">
+<div class="card m-2" style="max-width: 18rem;">
+  <div class="card-body text-center ">
+    <h5 class="card-title"><%= link_to "#{task.title}", task_path(task) %></h5>
+    <div class="d-flex justify-content-center align-item-center">
+    <p class="card-text"><%= "#{task.details}"%></p>
+    <input type="checkbox" <%= 'checked' if task.completed == true %> class="m-2">
+    </div>
+    <div>
+    <%= link_to 'Edit task', task_edit_path(task), class: "btn btn-warning" %>
+    <%= link_to "Delete",
+  task_path(task),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger"
+%>
+<% end %>
+</div>
+</div>
+</div>
+</div>
